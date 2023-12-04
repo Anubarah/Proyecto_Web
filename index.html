@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Web</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+<body>
+    
+
+    <div class="main-container">
+        <div class="seccion-principal">
+            <div class="cuadrado"></div>
+            <div class="texto-centrado">Kel-Thuzah</div>
+        </div>
+        
+    </div>
+
+    <div class="Barra_fondo">
+        <div class="contenedor-botones">
+            <button type="button" class="Navegacion" onclick="navegarA('contenidoExplora')">Explora</button>
+            <button type="button" class="Navegacion" onclick="navegarA('contenidoGaleria')">Galeria</button>
+            <button type="button" class="Navegacion_jugar"onclick="navegarA('contenidoJugar')">Jugar</button>
+            <button type="button" class="Navegacion" onclick="navegarA('contenidoPersonajes')"> Personajes</button>
+            <button type="button" class="Navegacion" onclick="navegarA('contenidoMonturas')"> Monturas</button>
+        </div>
+    </div>    
+
+    <div class="linea-separadora"></div>
+    <div class="barra-deslizante" id="barraDeslizante">
+        <div>        
+            <button type="button" class="N_Navegacion" onclick="navegarA('contenidoExplora')">Explora</button>
+            <button type="button" class="N_Navegacion" onclick="navegarA('contenidoGaleria')">Galeria</button>
+            <button type="button" class="N_Navegacion_jugar" onclick="navegarA('contenidoJugar')">Jugar</button>
+            <button type="button" class="N_Navegacion" onclick="navegarA('contenidoPersonajes')"> Personajes</button>
+            <button type="button" class="N_Navegacion" onclick="navegarA('contenidoMonturas')"> Monturas</button>
+        </div>
+ 
+    </div>
+    
+    <script>
+function navegarA(id) {
+    console.log("Navegando a:", id); // Agrega esta línea para imprimir en la consola
+    var elemento = document.getElementById(id);
+    elemento.scrollIntoView({ behavior: 'smooth' });
+}
+    </script>
+
+<script>
+window.onscroll = function() {
+    var barra = document.getElementById('barraDeslizante');
+    var contenidoExplora = document.getElementById('contenidoExplora').getBoundingClientRect();
+    var contenidoGaleria = document.getElementById('contenidoGaleria').getBoundingClientRect();
+    var contenidoJugar = document.getElementById('contenidoJugar').getBoundingClientRect();
+    var contenidoPersonajes = document.getElementById('contenidoPersonajes').getBoundingClientRect();
+    var contenidoMonturas = document.getElementById('contenidoMonturas').getBoundingClientRect();
+    
+    var btnsN_Navegacion = document.querySelectorAll('.N_Navegacion'); // Todos los botones en barra-deslizante
+    var btnsN_Navegacion_jugar = document.querySelectorAll('.N_Navegacion_jugar');
+    var btnExploraDeslizante = btnsN_Navegacion[0]; // Botón Explora en barra-deslizante
+    var btnGaleriaDeslizante = btnsN_Navegacion[1];  // Botón Galería en barra-deslizante
+        
+    // Mostrar/ocultar barra deslizante
+    if (window.scrollY > 610) {
+        barra.style.top = "0";
+    } else {
+        barra.style.top = "-80px";
+    }
+
+    // Cambiar color de botón Explora en barra deslizante
+    if (contenidoExplora.top < window.innerHeight && contenidoExplora.bottom > 0) {
+        btnExploraDeslizante.style.backgroundColor = "#777"; 
+    } else {
+        btnExploraDeslizante.style.backgroundColor = "#555"; 
+    }
+
+    // Cambiar color de botón Galería en barra deslizante
+    if (contenidoGaleria.top < window.innerHeight && contenidoGaleria.bottom > 0) {
+        btnGaleriaDeslizante.style.backgroundColor = "#777"; 
+    } else {
+        btnGaleriaDeslizante.style.backgroundColor = "#555"; 
+    }
+};
+
+</script>
+
+
+        <div id="contenidoExplora">
+            <div class="contenido-adicional">
+                <p></p>
+                <p></p>
+                <p></p>
+                <div class="slider-container">
+                    <div class="slider">
+                        <img class="slide" src="/img/Slider_1.jpg" alt="Imagen 1">
+                        <img class="slide" src="/img/Slider_2.jpg" alt="Imagen 2">
+                        <img class="slide" src="/img/Slider_3.jpg" alt="Imagen 3">
+                        <div class="slider-dots">
+                            <span class="slider-dot"></span>
+                            <span class="slider-dot"></span>
+                            <span class="slider-dot"></span>
+                        </div>
+                    </div>
+                    <!-- Mover los botones fuera del div .slider -->
+                    <div class="slider-nav">
+                        <button class="prev">&larr;</button>
+                        <button class="next">&rarr;</button>
+                    </div>
+                </div>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.slider-dot');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+let currentIndex = 0;
+
+function updateSlider() {
+    slides.forEach(slide => slide.style.display = 'none');
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    slides[currentIndex].style.display = 'block';
+    dots[currentIndex].classList.add('active');
+}
+
+prevBtn.addEventListener('click', () => {
+    currentIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+    updateSlider();
+});
+
+nextBtn.addEventListener('click', () => {
+    currentIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+    updateSlider();
+});
+
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateSlider();
+    });
+});
+
+// Mostrar la primera imagen cuando carga la página.
+updateSlider();
+
+// Hacer que las imágenes cambien automáticamente.
+setInterval(() => {
+    currentIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+    updateSlider();
+}, 10000);
+
+</script>
+<div id="contenidoGaleria">
+    <p>.</p>
+    <p>.</p>
+    <p>.</p>
+    <p>.</p>
+<div class="swiper-container">
+    
+    <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-image: url('/img/01.jpg');"></div>
+        <div class="swiper-slide">
+            <video controls loop muted playsinline>
+                <source src="/img/02.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="swiper-slide" style="background-image: url('/img/03.jpg');"></div>
+        <div class="swiper-slide">
+            <video controls loop muted playsinline>
+                <source src="/img/04.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="swiper-slide" style="background-image: url('/img/05.jpg');"></div>
+        <div class="swiper-slide">
+            <video controls loop muted playsinline>
+                <source src="/img/06.mp6" type="video/mp4">
+            </video>
+        </div>
+
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+   
+</div> 
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+</div>
+
+<script> 
+var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 1,
+    spaceBetween: 10,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    spaceBetween: 60
+});
+</script>
+
+
+<div id="contenidoPersonajes" class="seccion-con-fondo">
+    <p>.</p>
+    <p>.</p>
+    <p2>.</p2>
+    <div class="swiper-container" id="swiperPersonajes">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="/img/Apoyo.png" alt="Imagen Apoyo 1" style="width: 1100px; height: 500px;">
+            </div>
+            <div class="swiper-slide">
+                <img src="/img/Tirador.png"  alt="Imagen Tirador 1" style="width: 1100px; height: 500px;">
+            </div>
+            <div class="swiper-slide">
+                <img src="/img/Tanque.jpg" alt="Imagen Tanque 1" style="width: 1100px; height: 500px;">
+            </div>
+            <div class="swiper-slide">
+                <img src="/img/Asesino.jpg" alt="Imagen Asesino 1" style="width: 1100px; height: 500px;">
+            </div>
+            <div class="swiper-slide">
+                <img src="/img/Estratega.jpg" alt="Imagen Estratega 1" style="width: 1100px; height: 500px;">
+            </div>
+
+        </div>
+
+        <div class="swiper-button-prev" id="swiperPersonajesPrev"></div>
+        <div class="swiper-button-next" id="swiperPersonajesNext"></div>
+ 
+        <div class="swiper-pagination" id="swiperPersonajesPagination"></div>
+    </div>
+    
+    
+    
+    <script>
+var swiperPersonajes = new Swiper('#swiperPersonajes', {
+    slidesPerView: 1,
+    spaceBetween: 250, 
+    centeredSlides: true,
+    slidesOffsetBefore: -50, 
+    pagination: {
+        el: '#swiperPersonajes .swiper-pagination',
+        clickable: true,
+    },
+});
+
+function mostrarPersonaje(tipo) {
+    var index = 0;
+
+    switch (tipo) {
+        case 'apoyo':
+            index = 0;
+            break;
+        case 'tirador':
+            index = 1;
+            break;
+        case 'tanque':
+            index = 2;
+            break;
+        case 'asesino':
+            index = 3;
+            break;
+        case 'Estratega':
+            index = 4;
+            break;
+        default:
+            index = 0;
+    }
+
+    swiperPersonajes.slideTo(index, 0);
+}
+
+    </script>
+    
+</div>
+<div class="barra-personajes">
+    <button class="personaje-btn" onclick="mostrarPersonaje('apoyo')">
+        <img src="\img\Logo.png" alt="Logo Apoyo">
+        <span>Apoyo</span>
+    </button>
+
+    <button class="personaje-btn" onclick="mostrarPersonaje('tirador')">
+        <img src="\img\Logo.png" alt="Logo Tirador">
+        <span>Tirador</span>
+    </button>
+
+    <button class="personaje-btn" onclick="mostrarPersonaje('tanque')">
+        <img src="\img\Logo.png" alt="Logo Tanque">
+        <span>Tanque</span>
+    </button>
+
+    <button class="personaje-btn" onclick="mostrarPersonaje('asesino')">
+        <img src="\img\Logo.png" alt="Logo Asesino">
+        <span>Asesino</span>
+    </button>
+
+    <button class="personaje-btn" onclick="mostrarPersonaje('Estratega')">
+        <img src="\img\Logo.png" alt="Logo Estratega">
+        <span>Estratega</span>
+    </button>
+</div>
+<p2>.</p2>
+
+<div id="contenidoMonturas" class="seccion-con-fondo">
+    <p>.</p>
+    <div class="monturas-container">
+        <div class="montura">
+            <img src="img/1.jpg" alt="Montura 1" style="width: 200px; height: 150px;">
+            <p>Aquilon endurecido por la batalla</p>
+        </div>
+        <div class="montura">
+            <img src="img/2.jpg" alt="Montura 2" style="width: 200px; height: 150px;">
+            <p>DPellejosquirla de berilo</p>
+        </div>
+        <div class="montura">
+            <img src="img/3.jpg" alt="Montura 3" style="width: 200px; height: 150px;">
+            <p>Alafilada feroz</p>
+        </div>
+        <div class="montura">
+            <img src="img/4.jpg" alt="Montura 4" style="width: 200px; height: 150px;">
+            <p>Arnés salvajizo estival</p>
+        </div>
+
+        <div class="montura">
+            <img src="img/5.jpg" alt="Montura 5" style="width: 200px; height: 150px;">
+            <p>Salvajizo invernal</p>
+        </div>
+        <div class="montura">
+            <img src="img/6.jpg" alt="Montura 6" style="width: 200px; height: 150px;">
+            <p>Mano de Hrestimorak</p>
+        </div>
+        <div class="montura">
+            <img src="img/7.jpg" alt="Montura 7" style="width: 200px; height: 150px;">
+            <p>Comealmas de Gladiador desencadenado</p>
+        </div>
+        <div class="montura">
+            <img src="img/8.jpg" alt="Montura 8" style="width: 200px; height: 150px;">
+            <p>Alatumba pálido</p>
+        </div>
+    </div>
+</div>
+
+<div id="contenidoJugar" class="seccion-con-fondo"> 
+<p>.</p>
+
+<div class="container">
+<form id="usuarioForm" class="small-form">
+    <label for="nombreUsuario">Usuario:</label>
+    <input type="text" id="nombreUsuario" placeholder="Nombre de Usuario" required>
+
+    <label for="emailUsuario">Email:</label>
+    <input type="email" id="emailUsuario" placeholder="Ejemplo: usuario@email.com" required>
+
+    <label for="passwordUsuario">Contraseña:</label>
+    <input type="password" id="passwordUsuario" required>
+
+    <button type="button" onclick="enviarUsuario()">Enviar Usuario</button>
+</form>
+
+<form id="personajeForm">
+    <label for="nombrePersonaje">Nombre:</label>
+    <input type="text" id="nombrePersonaje" placeholder="Nombre del Personaje" required>
+
+    <label for="tipoPersonaje">Tipo:</label>
+    <select id="tipoPersonaje" required>
+        <option value="Mago">Mago</option>
+        <option value="Arquero">Arquero</option>
+        <option value="Mago">Paladin</option>
+        <option value="Arquero">Picaro</option>
+        <option value="Mago">Chaman</option>
+        <option value="Arquero">Nigromante</option>
+    </select>
+
+    <label for="clasePersonaje">Clase:</label>
+    <select id="clasePersonaje" required>
+        <option value="Elfo">Elfo</option>
+        <option value="Humano">Humano</option>
+        <option value="Elfo">Orco</option>
+        <option value="Humano">Muerto viviente</option>
+        <option value="Humano">Enano</option>
+    </select>
+
+    <label for="apodoPersonaje">Apodo:</label>
+    <input type="text" id="apodoPersonaje" placeholder="Apodo de Recuperación" required>
+
+    <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+    <input type="date" id="fechaNacimiento" required>
+
+    <button type="button" onclick="enviarPersonaje()">Enviar Personaje</button>
+</form>
+</div></div>
+<script>
+    function enviarUsuario() {
+        var nombreUsuario = document.getElementById('nombreUsuario').value;
+        var emailUsuario = document.getElementById('emailUsuario').value;
+        var passwordUsuario = document.getElementById('passwordUsuario').value;
+
+        // Realiza cualquier validación o acción necesaria con los datos
+
+        // Puedes enviar los datos al servidor si es necesario
+        console.log("Datos del usuario enviados:", nombreUsuario, emailUsuario, passwordUsuario);
+    }
+
+    function enviarPersonaje() {
+        var nombrePersonaje = document.getElementById('nombrePersonaje').value;
+        var tipoPersonaje = document.getElementById('tipoPersonaje').value;
+        var clasePersonaje = document.getElementById('clasePersonaje').value;
+        var apodoPersonaje = document.getElementById('apodoPersonaje').value;
+        var fechaNacimiento = document.getElementById('fechaNacimiento').value;
+
+        // Realiza cualquier validación o acción necesaria con los datos
+
+        // Puedes enviar los datos al servidor si es necesario
+        console.log("Datos del personaje enviados:", nombrePersonaje, tipoPersonaje, clasePersonaje, apodoPersonaje, fechaNacimiento);
+    }
+</script>
+
+</body>
+</html>
