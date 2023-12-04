@@ -448,3 +448,21 @@ button {
     padding: 0;
     box-sizing: border-box;
 }
+
+@media screen and (max-width:800px){
+    .Navegacion{
+        flex-direction: column;
+        height: 120px;
+        justify-content: spance-evenly; 
+    }
+    .Navegacion_jugar{
+        flex-direction: column;
+        height: 120px;
+        justify-content: spance-evenly; 
+    }
+    .Barra_fondo{
+        flex-direction: column;
+        height: 120px;
+        justify-content: spance-evenly; 
+    }
+}
