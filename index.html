@@ -428,6 +428,50 @@ function mostrarPersonaje(tipo) {
         console.log("Datos del personaje enviados:", nombrePersonaje, tipoPersonaje, clasePersonaje, apodoPersonaje, fechaNacimiento);
     }
 </script>
+<style>
+    .empty {
+        border: 3px solid red;
+    }
 
+    .filled {
+        border: 3px solid green;
+    }
+</style>
+
+<script>
+    function updateBorderStyle(element, isValid) {
+        if (isValid) {
+            element.classList.remove('empty');
+            element.classList.add('filled');
+        } else {
+            element.classList.remove('filled');
+            element.classList.add('empty');
+        }
+    }
+
+    function enviarUsuario() {
+        var nombreUsuario = document.getElementById('nombreUsuario');
+        var emailUsuario = document.getElementById('emailUsuario');
+        var passwordUsuario = document.getElementById('passwordUsuario');
+
+        updateBorderStyle(nombreUsuario, !!nombreUsuario.value.trim());
+        updateBorderStyle(emailUsuario, !!emailUsuario.value.trim());
+        updateBorderStyle(passwordUsuario, !!passwordUsuario.value.trim());
+    }
+
+    function enviarPersonaje() {
+        var nombrePersonaje = document.getElementById('nombrePersonaje');
+        var tipoPersonaje = document.getElementById('tipoPersonaje');
+        var clasePersonaje = document.getElementById('clasePersonaje');
+        var apodoPersonaje = document.getElementById('apodoPersonaje');
+        var fechaNacimiento = document.getElementById('fechaNacimiento');
+
+        updateBorderStyle(nombrePersonaje, !!nombrePersonaje.value.trim());
+        updateBorderStyle(tipoPersonaje, !!tipoPersonaje.value.trim());
+        updateBorderStyle(clasePersonaje, !!clasePersonaje.value.trim());
+        updateBorderStyle(apodoPersonaje, !!apodoPersonaje.value.trim());
+        updateBorderStyle(fechaNacimiento, !!fechaNacimiento.value.trim());
+    }
+</script>
 </body>
 </html>
