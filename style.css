@@ -16,10 +16,12 @@ body {
     background-repeat: no-repeat, no-repeat;
     background-size: 100% 16.5%, 100% 83.5%;
     background-position: top center, center bottom;  
+    display: flex;
 }
 
 .main-container {
     width: 100%;
+    display: flex;
 }
 
 .Barra_fondo {
@@ -447,4 +449,86 @@ button {
 * {
     padding: 0;
     box-sizing: border-box;
+}
+
+@media (min-width: 480px) {
+    .contenedor-botones{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .main-container{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .barra-deslizante{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .Barra_fondo{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .barra-personajes{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .body{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .slider-container{        
+        flex-direction: row;
+        justify-content: space-evenly;} 
+    .swiper-container{        
+        flex-direction: row;
+        justify-content: space-evenly;} 
+}
+
+@media (min-width: 768px) {
+    .contenedor-botones{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .main-container{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .barra-deslizante{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .Barra_fondo{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .barra-personajes{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .body{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .slider-container{        
+        flex-direction: row;
+        justify-content: space-evenly;} 
+    .swiper-container{        
+        flex-direction: row;
+        justify-content: space-evenly;} 
+}
+
+
+@media (min-width: 1024px){
+    .contenedor-botones{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .main-container{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .barra-deslizante{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .Barra_fondo{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .barra-personajes{        
+        flex-direction: row;
+        justify-content: space-evenly;}
+    .body{        
+        flex-direction: row;
+        justify-content: space-evenly;} 
+    .slider-container{        
+        flex-direction: row;
+        justify-content: space-evenly;} 
+    .swiper-container{        
+        flex-direction: row;
+        justify-content: space-evenly;} 
 }
